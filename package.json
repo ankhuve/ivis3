@@ -6,9 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankhuve/ivis3.git"
+  },
   "author": "Erik Forsberg",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankhuve/ivis3/issues"
+  },
+  "homepage": "https://github.com/ankhuve/ivis3#readme",
   "dependencies": {
-    "normalize.css": "^3.0.3"
+    "d3": "^3.5.15",
+    "three": "^0.74.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect-php": "0.0.7",
+    "gulp-sass": "^2.2.0"
   }
 }
