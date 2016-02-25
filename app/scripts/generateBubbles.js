@@ -10,7 +10,7 @@ function handleCsvData( data ){
     data.forEach(function( row ){
         var concatData =  {
             posData : {
-                posX : width*Math.random(), posY : height*Math.random()
+                posX : 20 + (width - 40) *Math.random(), posY : 20 + (height - 40) *Math.random()
             },
             pageData : row
         };
@@ -22,7 +22,7 @@ function handleCsvData( data ){
 
 function makeVisualization(){
     createLikeBubbles();
-
+    moveBubbles();
 }
 
 function createColorScale( ) {
@@ -48,14 +48,48 @@ function createLikeBubbles(){
         .enter()
         .insert("circle")
         .attr("class", "bubble")
+        //.attr("fill", "none")
+        .attr("stroke", "#ececec")
+        .style("box-shadow", "#FFF8AA 10px 10px 0px 0px")
         .attr("date", function(d){ return d.pageData.Date} )
         .attr("engaged", function(d){ return d.pageData.daily_engaged} )
-        .attr("cx", function(d){ return d.posData.posX})
-        .attr("cy", function(d){ return d.posData.posY})
+        //.attr("cx", function(d){ return d.posData.posX})
+        //.attr("cy", function(d){ return d.posData.posY})
         .attr("r", 0)
         .transition()
-        .attr("r", function(d){ return d.pageData.daily_engaged })
-        .style("fill", "#ececec");
+        .attr("r", function(d){ return d.pageData.lifetime_likes/100 });
+        //.style("fill", "#ececec");
+}
+
+function randomBetween(min, max){
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function moveBubbles(){
+    var allBubbles = $(".bubble");
+
+    var bubbleTl = new TimelineMax();
+
+    for(var i = 0; i < allBubbles.length; i++){
+
+        var b = TweenMax.fromTo(allBubbles[i],randomBetween(20, 40), {
+            x:width/2,
+            y:height*0.7,
+            rotation:randomBetween(-720, 720),
+            opacity: 1
+        },{
+            x:randomBetween(0, width),
+            y:randomBetween(0, height*0.7),
+            rotation:0,
+            opacity: 0,
+            transformOrigin:randomBetween(-1900, 1900) + '% 50%',
+            //repeat:-1,
+            ease:Linear.easeNone
+        });
+
+        bubbleTl.add(b, (i+1)/10)
+    }
+    bubbleTl.time(4)
 }
 
 var height = window.innerHeight;

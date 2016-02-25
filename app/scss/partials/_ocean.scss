@@ -1,6 +1,17 @@
 #oceanContainer{
   height: 70vh;
   width: 100%;
-  background: #4f6862;
+  background: -webkit-linear-gradient(#24495f, #0c0c19);
+  background: -o-linear-gradient(#24495f, #0c0c19);
+  background: -moz-linear-gradient(#24495f, #0c0c19);
+  background: linear-gradient(#24495f, #0c0c19);
   display: block;
+  
+  .bubble{
+    //
+    //-webkit-box-shadow: #FFF8AA 0px 0px 50px 0px;
+    //-moz-box-shadow: #FFF8AA 0px 0px 50px 0px;
+    //box-shadow: #FFF8AA 0px 0px 50px 0px;
+
+  }
 }
