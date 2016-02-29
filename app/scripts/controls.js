@@ -36,9 +36,7 @@ function toggleAnimationControls(){
 
 function setTimescale(slideAmount){
     if(slideAmount != 0){
-        console.log(slideAmount);
         bubbleTl.timeScale(slideAmount);
-        console.log(slideAmount, bubbleTl.timeScale(), bubbleTl.isActive());
     }
 
 }
@@ -64,11 +62,18 @@ function clearBubbleStats(){
 
 }
 
-function slideBubbleInfo(slideNum){
+function slideBubbleInfo(container, slideNum, dir){
+
     if(slideNum == 1){
-        $(".slide").removeClass("move");
+        $(".slideContainer#slider-" + container + " .slide").removeClass( dir === 1 ? "move" : "moveOpposite" );
     } else if(slideNum == 2){
-        $(".slide").addClass("move");
+        $(".slideContainer#slider-" + container + " .slide").addClass( dir === 1 ? "move" : "moveOpposite" );
     }
 
+}
+
+var infoToggled = false;
+function toggleAllInfo(){
+    $(".oneHalf").toggleClass("hidden");
+    infoToggled = !infoToggled;
 }

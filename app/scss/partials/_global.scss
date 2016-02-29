@@ -56,10 +56,10 @@ body{
     width: 200%;
     height: 100%;
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
     .slide{
+      position: relative;
       width: 50%;
       height: 100%;
       float: left;
@@ -69,6 +69,14 @@ body{
       -ms-transition: transform 0.3s;
       -o-transition: transform 0.3s;
       transition: transform 0.3s;
+      //
+      //&#slider-1{
+      //  -webkit-transform: translateX(0%);
+      //  -moz-transform: translateX(0%);
+      //  -ms-transform: translateX(0%);
+      //  -o-transform: translateX(0%);
+      //  transform: translateX(0%);
+      //}
 
       &.move{
         -webkit-transform: translateX(-100%);
@@ -77,7 +85,31 @@ body{
         -o-transform: translateX(-100%);
         transform: translateX(-100%);
       }
+
+      &.moveOpposite{
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transform: translateX(100%);
+      }
+
+      .moreInfo{
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.7;
+
+        &.left{
+          right: auto;
+          left: 1rem !important;
+        }
+      }
     }
+
+
   }
 }
 
@@ -113,7 +145,7 @@ body{
     }
 
     .halfBoxHeader{
-      top: -1rem !important;
+      top: 1rem !important;
       font-size: 0.5rem !important;
     }
 

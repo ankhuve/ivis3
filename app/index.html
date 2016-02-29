@@ -18,50 +18,101 @@
     <div id="skyContainer">
         <!--<div class="stars"></div>-->
         <div id="activityFadeBox"></div>
-        <div class="tickerContainer oneHalf">
-            <header class="halfBoxHeader">
-                <h2>
-                    Lifetime stats
-                </h2>
-            </header>
-            <div id="lifetimeLikes">
-                <i class="fa fa-thumbs-up"></i>
-                <h3 id="currentLikes"></h3>
-            </div>
-
-            <div id="dateTicker">
-                <i class="fa fa-calendar"></i>
-                <h4 id="currentDate"></h4>
-            </div>
+        <div id="toggleAllInfo" onclick="toggleAllInfo()">
+            <i class="fa fa-info"></i>
         </div>
-
-        <div class="oneHalf" id="detailsOnDemand">
-            <div class="slideContainer">
+        <div class="tickerContainer oneHalf hidden">
+            <div class="slideContainer" id="slider-1">
 
                 <div class="slide">
-                    <header class="halfBoxHeader" onclick="slideBubbleInfo(2)">
+                    <header class="halfBoxHeader">
                         <h2>
-                            Bubble stats
+                            Lifetime stats
                         </h2>
                     </header>
-                    <div id="bubbleStat">
-                        <h2><br>Hover over or click a bubble</h2>
+                    <div class="mainInfo">
+                        <div id="lifetimeLikes">
+                            <i class="fa fa-thumbs-up"></i>
+                            <h3 id="currentLikes"></h3>
+                        </div>
+
+                        <div id="dateTicker">
+                            <i class="fa fa-calendar"></i>
+                            <h4 id="currentDate"></h4>
+                        </div>
                     </div>
 
-                    <div id="bubbleDate">
+                    <div class="moreInfo left" onclick="slideBubbleInfo(1, 2, 1)">
+                        <i class="fa fa-caret-left"></i>
                     </div>
                 </div>
+
                 <div class="slide">
-                    <header class="halfBoxHeader" onclick="slideBubbleInfo(1)">
+                    <header class="halfBoxHeader">
+                        <h2>
+                            Demography of likes 12/2/2016
+                        </h2>
+                        <div class="sunburstRadio">
+                            <form>
+                                <label><input type="radio" name="mode" value="size"> Size</label>
+                                <label><input type="radio" name="mode" value="count" checked> Count</label>
+                            </form>
+                        </div>
+
+                    </header>
+
+                    <div class="mainInfo" id="likeBurstContainer">
+                    </div>
+
+                    <div class="moreInfo left"  onclick="slideBubbleInfo(1, 1, 1)">
+                        <i class="fa fa-caret-right"></i>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="oneHalf hidden" id="detailsOnDemand">
+            <div class="slideContainer" id="slider-2">
+
+                <div class="slide">
+                    <header class="halfBoxHeader">
                         <h2>
                             Bubble stats
                         </h2>
                     </header>
-                    <div id="otherStuff">
-                        <h2><br>Hover over or click a bubble</h2>
+
+                    <div class="mainInfo">
+                        <div id="bubbleStat">
+                            <h2><br>Hover over or click a bubble</h2>
+                        </div>
+
+                        <div id="bubbleDate">
+                        </div>
                     </div>
 
-                    <div id="sunburstOrSomething">
+                    <div class="moreInfo" onclick="slideBubbleInfo(2, 2, 1)">
+                        <i class="fa fa-caret-right"></i>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <header class="halfBoxHeader">
+                        <h2>
+                            Bubble stats
+                        </h2>
+                    </header>
+
+                    <div class="mainInfo">
+                        <div id="sunburstOrSomething">
+                        </div>
+                    </div>
+
+                    <div class="moreInfo" onclick="slideBubbleInfo(2, 1, 1)">
+                        <i class="fa fa-caret-left"></i>
                     </div>
                 </div>
             </div>
@@ -77,12 +128,9 @@
         </div>
         <div id="animationControls">
             <div class="controlGroup">
-                <!--<div class="controlGroup">-->
                     <div id="togglePlay" onclick="togglePlayAnimation()"><i class="fa fa-pause"></i></div>
 
                     <div id="restartAnimation" onclick="restartAnimation()"><i class="fa fa-repeat"></i></div>
-
-                <!--</div>-->
             </div>
 
             <div id="timeScaleControls" class="sliderContainer controlGroup">

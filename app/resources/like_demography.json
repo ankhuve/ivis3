@@ -1,0 +1,78 @@
+{
+	"name": "Gender",
+	"children": [
+		{
+			"name": "Male",
+			"children": [
+				{
+					"name": "13-17",
+					"size": 0
+				}, {
+					"name": "18-24",
+					"size": 102
+				}, {
+					"name": "25-34",
+					"size": 112
+				}, {
+					"name": "35-44",
+					"size": 64
+				}, {
+					"name": "45-54",
+					"size": 37
+				}, {
+					"name": "55-64",
+					"size": 14
+				}, {
+					"name": "65+",
+					"size": 7
+				}
+			]
+		}, {
+			"name": "Female",
+			"children": [
+				{
+					"name": "13-17",
+					"size": 4
+				}, {
+					"name": "18-24",
+					"size": 214
+				}, {
+					"name": "25-34",
+					"size": 288
+				}, {
+					"name": "35-44",
+					"size": 116
+				}, {
+					"name": "45-54",
+					"size": 73
+				}, {
+					"name": "55-64",
+					"size": 17
+				}, {
+					"name": "65+",
+					"size": 17
+				}
+			]
+		}, {
+			"name": "Undefined",
+			"children": [
+				{
+					"name": "18-24",
+					"size": 2
+				}, {
+					"name": "25-34",
+					"size": 9
+				}, {
+					"name": "35-44",
+					"size": 9
+				}, {
+					"name": "45-54",
+					"size": 6
+				}, {
+					"name": "55-64",
+					"size": 1
+				}
+			]
+		}
+	]
+}
