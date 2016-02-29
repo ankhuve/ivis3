@@ -1,0 +1,142 @@
+body{
+  overflow: hidden;
+  //background: $smoke;
+  font-family: $font-family-sans-serif;
+  color: $jet;
+
+  a{
+    color: $jet;
+
+    &:visited{
+      color: $jet;
+    }
+
+    &:link{
+      color: $jet;
+    }
+  }
+
+  h1, h2, h3, h4{
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+
+  h3 {
+    display: inline-block;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    //padding: 0.5rem;
+    line-height: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .container{
+    height: 100vh;
+    width: 100%;
+  }
+
+  button{
+    border: none;
+    color: $smoke;
+    text-transform: uppercase;
+    background: $secondary-color;
+    padding: 1rem 1.5rem;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    outline: none;
+  }
+
+  .row-md{
+    display: inline-block;
+  }
+
+  .slideContainer{
+    width: 200%;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .slide{
+      width: 50%;
+      height: 100%;
+      float: left;
+      display: inline-block;
+      -webkit-transition: transform 0.3s;
+      -moz-transition: transform 0.3s;
+      -ms-transition: transform 0.3s;
+      -o-transition: transform 0.3s;
+      transition: transform 0.3s;
+
+      &.move{
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #skyContainer{
+
+    .tickerContainer{
+
+      #lifetimeLikes{
+
+        .fa-thumbs-up{
+          font-size: 2rem !important;
+          line-height: 2rem;
+          padding-right: 1rem;
+        }
+
+        #currentLikes{
+          font-size: 2rem !important;
+        }
+
+      }
+
+      #currentDate{
+        padding: 0 1rem !important;
+      }
+
+
+    }
+
+    .oneHalf{
+      padding-top: 2rem !important;
+      height: calc(100% - 2rem) !important;
+    }
+
+    .halfBoxHeader{
+      top: -1rem !important;
+      font-size: 0.5rem !important;
+    }
+
+  }
+
+  #oceanContainer{
+
+    #animationControls.toggled{
+      -webkit-transform: translate3d(0, 50%, 0) !important;
+      -moz-transform: translate3d(0, 50%, 0) !important;
+      -ms-transform: translate3d(0, 50%, 0) !important;
+      -o-transform: translate3d(0, 50%, 0) !important;
+      transform: translate3d(0, 50%, 0) !important;
+
+      .row-md {
+        display: block;
+        margin: 0;
+      }
+
+      .controlGroup{
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+}

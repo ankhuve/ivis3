@@ -1,50 +1,138 @@
 #skyContainer{
-  height: 30vh;
+  height: 30%;
   width: 100%;
-  background: #347a95;
+  background: #040408;
+  position: relative;
+  color: $iron;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
 
-  @keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-  }
-  @-webkit-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-  }
-  @-moz-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-  }
-  @-ms-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+  .fa-thumbs-up{
+    position: relative;
+    vertical-align: top;
+    font-size: 2.5rem;
+    line-height: 4rem;
+    padding-right: 1rem;
   }
 
-  .stars, .twinkling {
+  #activityFadeBox{
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(52, 122, 148, 1);
+    background: -moz-radial-gradient(bottom, ellipse cover, #87d0e3 0%, rgba(52, 122, 148, 1) 80%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(bottom, ellipse cover, #87d0e3 0%,rgba(52, 122, 148, 1) 80%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at bottom, #87d0e3 0%,rgba(52, 122, 148, 1) 80%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+    opacity: 0;
+  }
+
+  .oneHalf{
+    position: relative;
+    padding: 2rem 0 0;
+    height: calc(100% - 4rem);
+    width: calc(50%);
+    display: inline-block;
+    float: left;
+
+    .halfBoxHeader{
+      position: relative;
+      top: -3rem;
+      color: change_color($iron, $alpha: 0.5);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 100;
+    }
+  }
+
+  .tickerContainer{
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+    padding: 5rem 0 0;
+    width: 50%;
+    height: calc(100% - 5rem);
+    text-align: center;
+    vertical-align: middle;
+
+    #dateTicker{
+      h4{
+        display: inline-block;
+        padding: 1rem;
+        text-align: right;
+      }
+
+    }
+
+
+
+    #lifetimeLikes{
+      position: relative;
+      vertical-align: middle;
+
+      h3{
+        display: inline-block;
+        font-family: $font-family-sans-serif-light;
+        //padding: 0.5rem;
+        line-height: 1rem;
+        font-size: 2.5rem;
+
+        &#currentLikes{
+          line-height: 4rem;
+          font-size: 4rem;
+        }
+      }
+    }
+
+
+  }
+
+  #detailsOnDemand{
+    padding: 0;
+    height: 100%;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+
+    .halfBoxHeader{
+      top: 2rem;
+    }
+
+    #bubbleStat{
+      text-transform: uppercase;
+    }
+
+    #dailyLikes{
+      position: relative;
+      vertical-align: top;
+      font-size: 2.5rem;
+      line-height: 4rem;
+    }
+
+    #selectedDate{
+      display: inline-block;
+      padding: 1rem;
+      text-align: right;
+    }
+  }
+
+  .stars {
     position:absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
     width:100%;
-    height:30%;
+    height:100%;
     display:block;
-  }
-
-  .stars {
     background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
     z-index:0;
   }
-
-  .twinkling{
-    background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-    z-index:1;
-
-    -moz-animation:move-twink-back 200s linear infinite;
-    -ms-animation:move-twink-back 200s linear infinite;
-    -o-animation:move-twink-back 200s linear infinite;
-    -webkit-animation:move-twink-back 200s linear infinite;
-    animation:move-twink-back 200s linear infinite;
-  }
-
 }

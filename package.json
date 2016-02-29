@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/ankhuve/ivis3#readme",
   "dependencies": {
-    "d3": "^3.5.15",
-    "three": "^0.74.0"
+    "d3": "^3.5.15"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",
