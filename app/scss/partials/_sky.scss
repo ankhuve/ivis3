@@ -10,24 +10,43 @@
   -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
 
-  #toggleAllInfo{
+
+
+  .topButton{
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    right: 3rem;
     z-index: 100;
     height: 2rem;
     width: 2rem;
     text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+
+    &#designBriefToggle{
+      right: auto;
+      left: 1rem;
+    }
+
+    &#toggleAllInfo{
+      right: 1rem;
+    }
 
     i{
       position: relative;
       top: 0.5rem;
     }
+
   }
+
 
   path {
     stroke: white;
     fill-rule: evenodd;
+
+    &.faded{
+      opacity: 0.3;
+    }
   }
 
   .fa-thumbs-up{
@@ -81,6 +100,15 @@
       text-transform: uppercase;
       font-size: 0.8rem;
       font-weight: 100;
+
+      .sunburstRadio{
+        position: relative;
+        top: 0.5rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        line-height: 1rem;
+        font-size: 1rem;
+      }
     }
 
     .mainInfo{
@@ -96,6 +124,29 @@
     width: 50%;
     text-align: center;
     vertical-align: middle;
+
+    #sunburstTooltip{
+      display: none;
+      position: absolute;
+      width: 20%;
+      padding: 0.7rem;
+      -ms-word-wrap: break-word;
+      word-wrap: break-word;
+      border: solid 2px;
+      background: rgba(0, 0, 0, 0.4);
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      border-radius: 1rem;
+      -webkit-transition: opacity 0.2s;
+      -moz-transition: opacity 0.2s;
+      -ms-transition: opacity 0.2s;
+      -o-transition: opacity 0.2s;
+      transition: opacity 0.2s;
+
+      &.active{
+        display: block;
+      }
+    }
 
     #lifetimeLikes{
       position: relative;
@@ -141,6 +192,12 @@
       top: 3rem;
       font-family: $font-family-sans-serif-light;
       text-transform: uppercase;
+
+      h2{
+        width: 90%;
+        margin: 1rem auto 0;
+        font-size: 2rem;
+      }
     }
 
     #bubbleDate{

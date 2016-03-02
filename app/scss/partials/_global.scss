@@ -5,14 +5,14 @@ body{
   color: $jet;
 
   a{
-    color: $jet;
+    color: #87d0e3;
 
     &:visited{
-      color: $jet;
+      color: #87d0e3;
     }
 
     &:link{
-      color: $jet;
+      color: #87d0e3;
     }
   }
 
@@ -98,67 +98,161 @@ body{
         position: absolute;
         bottom: 1rem;
         right: 1rem;
+        height: 2rem;
+        width: 2rem;
         font-size: 2rem;
         cursor: pointer;
         opacity: 0.7;
 
         &.left{
           right: auto;
-          left: 1rem !important;
+          left: 1rem;
         }
       }
     }
+  }
 
+  ::-webkit-scrollbar
+  {
+    width: 12px;  /* for vertical scrollbars */
+    height: 12px; /* for horizontal scrollbars */
+  }
 
+  ::-webkit-scrollbar-track
+  {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
 @media screen and (max-width: 640px) {
   #skyContainer{
 
-    .tickerContainer{
+    #toggleAllInfo{
+      top: 0.3rem !important;
+      right: 0.3rem !important;
+    }
 
-      #lifetimeLikes{
+    #designBriefToggle{
+      left: 0.3rem !important;
+      top: 0.3rem !important;
+    }
 
-        .fa-thumbs-up{
-          font-size: 2rem !important;
-          line-height: 2rem;
-          padding-right: 1rem;
-        }
+    .moreInfo {
+      bottom: 0;
+      right: 0;
+      font-size: 1.5rem;
 
-        #currentLikes{
-          font-size: 2rem !important;
-        }
-
+      &.left {
+        right: auto;
+        left: 0;
       }
-
-      #currentDate{
-        padding: 0 1rem !important;
-      }
-
-
     }
 
     .oneHalf{
-      padding-top: 2rem !important;
-      height: calc(100% - 2rem) !important;
-    }
 
-    .halfBoxHeader{
-      top: 1rem !important;
-      font-size: 0.5rem !important;
-    }
+      .halfBoxHeader{
+        top: -1rem !important;
+        font-size: 0.6rem !important;
+      }
 
+      .mainInfo{
+        height: calc(100% - 3rem) !important;
+
+        &#likeBurstContainer{
+          position: relative;
+          top: -1.5rem;
+        }
+      }
+
+      &.tickerContainer{
+
+        .sunburstRadio{
+          z-index: 10;
+
+          label{
+            font-size: 0.8rem;
+          }
+        }
+
+        #sunburstTooltip{
+          font-size: 0.8rem;
+          z-index: 15;
+          border-width: 1px;
+          width: 30%;
+          padding: 0.3rem;
+          -webkit-border-radius: 0.3rem;
+          -moz-border-radius: 0.3rem;
+          border-radius: 0.3rem;
+        }
+
+        #lifetimeLikes{
+          top: 0;
+
+          .fa-thumbs-up{
+            font-size: 2rem !important;
+            padding-right: 0.8rem;
+          }
+
+          #currentLikes{
+            font-size: 2rem !important;
+          }
+
+        }
+
+        #dateTicker{
+          top: 0;
+
+          #currentDate{
+            padding: 0 0 0 0.2rem !important;
+          }
+        }
+      }
+
+      &#detailsOnDemand{
+        #bubbleStat{
+          top: 0;
+
+          h2{
+            font-size: 1.3rem;
+            width: 80%;
+            margin: 0.5rem auto 0;
+          }
+
+
+          .fa-thumbs-up{
+            font-size: 2rem !important;
+            padding-right: 0.8rem;
+          }
+
+          #dailyLikes{
+            font-size: 2rem !important;
+          }
+        }
+
+        #bubbleDate{
+          top: 0;
+
+          #selectedDate{
+            padding: 0 0 0 0.3rem !important;
+          }
+        }
+      }
+    }
   }
 
   #oceanContainer{
 
     #animationControls.toggled{
-      -webkit-transform: translate3d(0, 50%, 0) !important;
-      -moz-transform: translate3d(0, 50%, 0) !important;
-      -ms-transform: translate3d(0, 50%, 0) !important;
-      -o-transform: translate3d(0, 50%, 0) !important;
-      transform: translate3d(0, 50%, 0) !important;
+      -webkit-transform: translate3d(0, 35%, 0) !important;
+      -moz-transform: translate3d(0, 35%, 0) !important;
+      -ms-transform: translate3d(0, 35%, 0) !important;
+      -o-transform: translate3d(0, 35%, 0) !important;
+      transform: translate3d(0, 35%, 0) !important;
 
       .row-md {
         display: block;
@@ -169,6 +263,14 @@ body{
         margin-bottom: 1rem;
       }
     }
+  }
+
+  #modal{
+    top: 3%;
+    left: 3%;
+    padding: 2% 2%;
+    width: 90%;
+    height: 82%;
   }
 
 }

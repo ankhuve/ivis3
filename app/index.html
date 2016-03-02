@@ -6,7 +6,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="dist/css/main.css">
 
@@ -15,11 +15,63 @@
 <body>
 
 <div class="container">
+    <div id="modalBg" onclick="closeModal();">
+
+    </div>
+    <div id="modal">
+        <div class="slideContainer" id="slider-3">
+            <div class="slide oneHalf">
+                <h1>Design brief</h1>
+                <h3>Erik Forsberg<a href="mailto:eforsbe@kth.se"><i class="fa fa-envelope"></i></a><a href="mailto:eforsbe@kth.se"><i class="fa fa-facebook-square"></i></a></h3>
+                <div class="awesomeGrid one-whole">
+                    <h2>What is this?</h2>
+                    <p>Thinking about the word "ambient", what popped up into my mind was the ambiance of a <span class="emphasize">deep ocean</span>. Therefore, what you see is an infinitely looping underwater visualization of VIC:s Facebook likes made with <a target="_blank" href="https://d3js.org/">D3.js</a>, <a target="_blank" href="https://greensock.com/tweenmax">TweenMax</a>, <a target="_blank" href="https://jquery.com/">jQuery</a>, and a bunch of custom JS along with HTML and CSS.</p>
+
+                    <h2>The bubbles</h2>
+                    <p>The bubbles represent every day's new likes. The size of the bubbles vary according to the new likes that day. The bubbles' movement is psuedo-random, as is the duration of their life. They slowly fade during the animation until they pop and disappear.
+                    </p>
+
+                    <h2>The sky</h2>
+                    <p>As the visualization runs, the sky subtly gets brighter and brighter. The brightness represents the lifetime likes of the page, representing a day when it starts out dark with few likes and ends bright with over 1000 likes in February 2016.</p><img src="images/daynight.jpg" alt="Day and night cycle">
+                    <p>Looking at the sunburst in the second slide of the left half of the sky (when information of toggled), one can see the demography of the likes at the end of the timeline.</p>
+
+                    <h2>Interactivity</h2>
+                    <p>The user can control the animation by clicking on the little down-facing caret at the top of the ocean. Below is a short explanation of the controls.</p><img src="images/controls.jpg" alt="Description of controls">
+                    <p>The user can pause and restart the animation, change the playback speed to reach a super ambient slowmotion speed, play it quickly, or even play it backwards. The rightmost slider is a filter, showing only bubbles representing an amount of likes larger than the chosen value. Toggling the information panels, one can over over or click a bubble for information about that day.</p>
+                    <h2>Ambiance</h2>
+                    <p>The playback speed control is inspired by the second lesson in  <a target="_blank" href="http://m.cottonlion.com/viktoria/infoart/pub/ambient-infovis.pdf">the study by Skog et al.</a> They say that the rate of change in the information should be frequent enough to promote relevance, however by slowing down the changes and adding a small amount of animation we can make the visualization very calm and ambient. This is achieved by dragging down the animation speed using the slider to a point where the bubbles just barely move at a quick glance, and toggling off the information boxes to not focus the attention to the ticking lifetime likes in the left-hand part of the sky.</p>
+                    <p>By not including a bunch of different colors, keeping to a rather narrow ocean-like palette gives a very calm experience.</p>
+                </div>
+            </div>
+            <div class="slide oneHalf">
+                <h1>User study</h1>
+                <div class="awesomeGrid one-whole">
+                    <h2>Stuff</h2>
+                    <p>I started by going to the WVS-website to find something interesting, and the question that caught my eye was “What is the most serious problem in the world?”. Using the online tool WVS provide was quite a pain as it was slow and it was really hard to clearly and easily see the data I was interested in.</p>
+                    <h2>Trail two</h2>
+                    <p>The question had several categories but I decided to only focus on poverty, which was the most common answer by nearly all countries in the survey. This was done by exporting the data from WVS and then processing it with Excel and my text editor, PHPStorm, to get the data that I wanted.
+                    </p>
+                    <p>Using D3.js, I created a world map and bound the data to the countries, using different color codings to visualize the extent to which the countries considered poverty to the the biggest problem in the world. By hovering the mouse over the countries, details about the country is displayed in a side panel. One can also zoom in the map and move around using the mouse scroll and by clicking and dragging.
+                    </p>
+                    <p>To filter the visualization, I added a slider with two stops. The stops represent the lower and upper bound of the percentage for each country.</p>
+                    <p>I thought that it would be interesting to see how poor countries answer the question, if maybe poor countries consider poverty to be a bigger problem than richer countries. To do this, I took data from Gapminder, namely GDP/capita (which had data for most countries). I bound this data to each country in the map and display it in the side bar when hovering over the country. However, I could not find a linear correlation between the two variables.</p>
+                    <p>I have learned a lot about D3.js and look forward to learning more!</p>
+                </div>
+            </div>
+        </div>
+        <div class="awesomeGrid one-whole bottomPagination">
+            <div class="paginator active" id="page-2" onclick="slideBubbleInfo(3, 1, 1, this)"><i class="fa fa-circle"></i></div>
+            <div class="paginator" id="page-1" onclick="slideBubbleInfo(3, 2, 1, this)"><i class="fa fa-circle"></i></div>
+        </div>
+    </div>
     <div id="skyContainer">
         <!--<div class="stars"></div>-->
         <div id="activityFadeBox"></div>
-        <div id="toggleAllInfo" onclick="toggleAllInfo()">
+        <div class="topButton" id="toggleAllInfo" onclick="toggleAllInfo()">
             <i class="fa fa-info"></i>
+        </div>
+        <div class="topButton" id="designBriefToggle" onclick="modalToggle()">
+            <i class="fa fa-file-text-o"></i>
         </div>
         <div class="tickerContainer oneHalf hidden">
             <div class="slideContainer" id="slider-1">
@@ -48,6 +100,9 @@
                 </div>
 
                 <div class="slide">
+                    <div id="sunburstTooltip">
+                        <div class="firstData"></div>
+                    </div>
                     <header class="halfBoxHeader">
                         <h2>
                             Demography of likes 12/2/2016
@@ -76,46 +131,46 @@
         </div>
 
         <div class="oneHalf hidden" id="detailsOnDemand">
-            <div class="slideContainer" id="slider-2">
+            <!--<div class="slideContainer" id="slider-2">-->
 
-                <div class="slide">
-                    <header class="halfBoxHeader">
-                        <h2>
-                            Bubble stats
-                        </h2>
-                    </header>
+            <!--<div class="slide">-->
+            <header class="halfBoxHeader">
+                <h2>
+                    Bubble stats
+                </h2>
+            </header>
 
-                    <div class="mainInfo">
-                        <div id="bubbleStat">
-                            <h2><br>Hover over or click a bubble</h2>
-                        </div>
-
-                        <div id="bubbleDate">
-                        </div>
-                    </div>
-
-                    <div class="moreInfo" onclick="slideBubbleInfo(2, 2, 1)">
-                        <i class="fa fa-caret-right"></i>
-                    </div>
+            <div class="mainInfo">
+                <div id="bubbleStat">
+                    <h2>Hover over or click a bubble</h2>
                 </div>
 
-                <div class="slide">
-                    <header class="halfBoxHeader">
-                        <h2>
-                            Bubble stats
-                        </h2>
-                    </header>
-
-                    <div class="mainInfo">
-                        <div id="sunburstOrSomething">
-                        </div>
-                    </div>
-
-                    <div class="moreInfo" onclick="slideBubbleInfo(2, 1, 1)">
-                        <i class="fa fa-caret-left"></i>
-                    </div>
+                <div id="bubbleDate">
                 </div>
             </div>
+
+            <div class="moreInfo" onclick="slideBubbleInfo(2, 2, 1)">
+                <i class="fa fa-caret-right"></i>
+            </div>
+            <!--</div>-->
+
+            <!--<div class="slide">-->
+            <!--<header class="halfBoxHeader">-->
+            <!--<h2>-->
+            <!--Bubble stats-->
+            <!--</h2>-->
+            <!--</header>-->
+
+            <!--<div class="mainInfo">-->
+            <!--<div id="sunburstOrSomething">-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="moreInfo" onclick="slideBubbleInfo(2, 1, 1)">-->
+            <!--<i class="fa fa-caret-left"></i>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
 
     </div>
@@ -128,9 +183,9 @@
         </div>
         <div id="animationControls">
             <div class="controlGroup">
-                    <div id="togglePlay" onclick="togglePlayAnimation()"><i class="fa fa-pause"></i></div>
+                <div id="togglePlay" onclick="togglePlayAnimation()"><i class="fa fa-pause"></i></div>
 
-                    <div id="restartAnimation" onclick="restartAnimation()"><i class="fa fa-repeat"></i></div>
+                <div id="restartAnimation" onclick="restartAnimation()"><i class="fa fa-repeat"></i></div>
             </div>
 
             <div id="timeScaleControls" class="sliderContainer controlGroup">

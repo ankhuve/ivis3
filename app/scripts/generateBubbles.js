@@ -177,7 +177,7 @@ function makeLifetimeSunburst(width, height, radius){
 
     var color = d3.scale.category20c();
 
-    var svg = dThreeSunburstContainer.append("svg")
+    var sunburstSvg = dThreeSunburstContainer.append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
@@ -195,18 +195,22 @@ function makeLifetimeSunburst(width, height, radius){
 
 // Keep track of the node that is currently being displayed as the root.
     var node;
+    var sunburstTooltip = $("#sunburstTooltip");
+    var tickerContainer = $(".tickerContainer");
 
     d3.json("resources/like_demography.json", function(error, root) {
 
         node = root;
-        var path = svg.datum(root).selectAll("path")
+        var path = sunburstSvg.datum(root).selectAll("path")
             .data(partition.nodes)
             .enter().append("path")
             .attr("d", arc)
             .attr("partitionName", function(d){ return (d.children ? d : d.parent).name })
             .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
             .on("click", click)
-            .on("mouseenter", function(d){ console.log( d.name + (d.size ? " : " + d.size : "") ) })
+            .on("mouseenter", function(d){ mouseEnter(d) })
+            .on("mousemove", function (d){ showTooltip(d) })
+            .on("mouseleave", function(d){ $("#sunburstTooltip").removeClass("active"); mouseLeave(d) })
             .each(stash);
 
 
@@ -222,6 +226,44 @@ function makeLifetimeSunburst(width, height, radius){
                 .attrTween("d", arcTweenData);
         });
 
+        // Given a node in a partition layout, return an array of all of its ancestor
+        // nodes, highest first, but excluding the root.
+        function getAncestors(node) {
+            var path = [];
+            var current = node;
+            while (current.parent) {
+                path.unshift(current);
+                current = current.parent;
+            }
+            return path;
+        }
+
+        // Restore everything to full opacity when moving off the visualization.
+        function mouseLeave(d) {
+            // Deactivate all segments during transition.
+            d3.selectAll("path").on("mouseover", null);
+
+            // Transition each segment to full opacity and then reactivate it.
+            d3.selectAll("path")
+                .style("opacity", 1);
+        }
+
+        function mouseEnter(d){
+            var sequenceArray = getAncestors(d);
+
+            $("#sunburstTooltip").addClass("active")
+            // Fade all the segments.
+            d3.selectAll("path")
+                .style("opacity", 0.3);
+
+            // Then highlight only those that are an ancestor of the current segment.
+            sunburstSvg.selectAll("path")
+                .filter(function(node) {
+                    return (sequenceArray.indexOf(node) >= 0);
+                })
+                .style("opacity", 1);
+        }
+
         function click(d) {
             node = d;
             path.transition()
@@ -229,6 +271,14 @@ function makeLifetimeSunburst(width, height, radius){
                 .attrTween("d", arcTweenZoom(d));
         }
     });
+
+    function showTooltip(d){
+        var relX = event.pageX - ( event.pageX > ( tickerContainer.width() - 120) ? 80 : - 20 );
+        var relY = event.pageY - ( event.pageY > ( tickerContainer.height() - 80) ? 80 : - 20);
+
+        sunburstTooltip.html( (d.size ? "Ages " : "") + d.name + (d.size ? " : <strong>" + d.size + "</strong>" : ""));
+        sunburstTooltip.css({"transform" : "translate( " + relX + "px, " + relY + "px )"});
+    }
 
     d3.select(self.frameElement).style("height", height + "px");
 
